@@ -21,7 +21,7 @@ def get_access_token():
 	app_secret = "aba7af8db27670642efb196ab968ce42"
 	group_id = "157076174344216"
 	token = facebook.get_app_access_token(app_id,app_secret)
-	response = urllib2.urlopen("https://graph.facebook.com/" + group_id + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
+	response = urllib2.urlopen("https://graph.facebook.com/" + group_id + "?fields=feed.limit(2)&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
 	data = response.read()
 	print data
 	articles = []
