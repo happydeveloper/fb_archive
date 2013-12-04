@@ -6,7 +6,7 @@ import facebook
 import urllib
 import json
 import urllib2
-from flask import Flask
+from flask import Flask,render_template
 
 myapp = Flask(__name__)
 myapp.debug = True
@@ -23,13 +23,11 @@ def get_access_token():
 	token = facebook.get_app_access_token(app_id,app_secret)
 	response = urllib2.urlopen("https://graph.facebook.com/" + group_id + "?fields=feed.limit(2)&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
 	data = json.loads(response.read())
-	print data["feed"]
 	articles = "test"
-	#feed = data["feed"]
-	#for f in feed["data"]:
-	#	print f
-		#articles.append({"name":f["from"]["name"],"message":f["message"]})
-	return articles
+	feed = data["feed"]
+	for f in feed["data"]:
+		articles.append({"name":f["from"]["name"],"message":f["message"]})
+	return render_template('index.html',articles=articles)
 
 
 PYCART_DIR = ''.join(['python-', '.'.join(map(str, sys.version_info[:2]))])

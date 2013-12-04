@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <ul>
+        {% for a in articles %}
+        <li>{{ a["name"] }}: {{ a["message"] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
