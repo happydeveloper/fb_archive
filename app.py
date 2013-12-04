@@ -17,8 +17,8 @@ def get_access_token():
 	group_id = "157076174344216";
 	token = facebook.get_app_access_token(app_id,app_secret)
 	graph = facebook.GraphAPI(token)
-	#feed = graph.request(group_id,{"fields":"feed"})
-	return token
+	feed = graph.request(group_id,{"fields":"feed"})
+	return feed
 
 
 PYCART_DIR = ''.join(['python-', '.'.join(map(str, sys.version_info[:2]))])
