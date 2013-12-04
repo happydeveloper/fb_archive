@@ -2,12 +2,20 @@
 import imp
 import os
 import sys
+import facebook
 from flask import Flask
 myapp = Flask(__name__)
 
 @myapp.route('/')
 def hello_world():
     return "Hello World!"
+
+@myapp.route('/get_access_token')
+def get_access_token():
+	app_id = "626851570705028"
+	app_secret = "aba7af8db27670642efb196ab968ce42"
+	token = facebook.get_app_access_token(app_id,app_secret)
+	return print token
 
 
 PYCART_DIR = ''.join(['python-', '.'.join(map(str, sys.version_info[:2]))])
