@@ -26,7 +26,8 @@ def get_access_token():
 	feed = data["feed"]
 	articles = []
 	for f in feed["data"]:
-		articles.append({"name":f["from"]["name"],"message":f["message"]})
+		print f
+		#articles.append({"name":f["from"]["name"],"message":f["message"]})
 	return articles
 
 
