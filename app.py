@@ -18,7 +18,7 @@ def get_access_token():
 	group_id = "157076174344216";
 	token = facebook.get_app_access_token(app_id,app_secret)
 	graph = facebook.GraphAPI(token)
-	feed = graph.get_object(group_id,{"fields":"feed"})
+	feed = graph.get_object(group_id)
 	return feed
 
 
