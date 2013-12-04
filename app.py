@@ -14,8 +14,11 @@ def hello_world():
 def get_access_token():
 	app_id = "626851570705028"
 	app_secret = "aba7af8db27670642efb196ab968ce42"
+	group_id = "157076174344216";
 	token = facebook.get_app_access_token(app_id,app_secret)
-	return token
+	graph = facebook.GraphAPI(token)
+	feed = graph.request(group_id,{"fields":"feed"})
+	return feed
 
 
 PYCART_DIR = ''.join(['python-', '.'.join(map(str, sys.version_info[:2]))])
