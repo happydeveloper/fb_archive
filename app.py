@@ -22,10 +22,12 @@ def get_access_token():
 	group_id = "157076174344216"
 	token = facebook.get_app_access_token(app_id,app_secret)
 	response = urllib2.urlopen("https://graph.facebook.com/" + group_id + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
-	feed = response.read()
-	print feed
-	#feed = json.loads(response.read())
-	return feed
+	data = response.read()
+	feed = data["feed"]
+	articles = []
+	for f in feed["data"]:
+		articles.append({"name":f["from"]["name"],"message":f["message"]})
+	return articles
 
 
 PYCART_DIR = ''.join(['python-', '.'.join(map(str, sys.version_info[:2]))])
