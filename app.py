@@ -3,6 +3,9 @@ import imp
 import os
 import sys
 import facebook
+import urllib
+import json
+import urllib2
 from flask import Flask
 myapp = Flask(__name__)
 myapp.debug = True
@@ -17,8 +20,8 @@ def get_access_token():
 	app_secret = "aba7af8db27670642efb196ab968ce42"
 	group_id = "157076174344216"
 	token = facebook.get_app_access_token(app_id,app_secret)
-	graph = facebook.GraphAPI(token)
-	feed = graph.get_object(group_id)
+	response = urllib2.urlopen("https://graph.facebook.com/" + group_id + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + token)
+	feed = json.loads(response.read())
 	return feed
 
 
