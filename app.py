@@ -8,7 +8,6 @@ import json
 import urllib2
 from flask import Flask
 myapp = Flask(__name__)
-myapp.debug = True
 
 @myapp.route('/')
 def hello_world():
