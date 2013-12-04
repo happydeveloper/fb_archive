@@ -15,7 +15,7 @@ def hello_world():
 def get_access_token():
 	app_id = "626851570705028"
 	app_secret = "aba7af8db27670642efb196ab968ce42"
-	group_id = "157076174344216";
+	group_id = "157076174344216"
 	token = facebook.get_app_access_token(app_id,app_secret)
 	graph = facebook.GraphAPI(token)
 	feed = graph.get_object(group_id)
