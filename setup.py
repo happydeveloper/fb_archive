@@ -7,7 +7,7 @@ setup(name='engfordev', version='1.0',
 
       #  Uncomment one or more lines below in the install_requires section
       #  for the specific client drivers/modules your application needs.
-      install_requires=['greenlet', 'gevent', 'Flask','pymongo','Flask-Pymongo'
+      install_requires=['greenlet', 'gevent', 'Flask','pymongo','Flask-Pymongo','facebook-sdk'
                         #  'MySQL-python',
                         #  'pymongo',
                         #  'psycopg2',
