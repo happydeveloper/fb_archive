@@ -27,8 +27,9 @@ def get_access_token():
 	feed = data["feed"]
 	for f in feed["data"]:
 		comment = []
-		for c in f["comments"]["data"]:
-			comment.append({"name":c["from"]["name"],"message":c["message"]})
+		if "comment" in f:
+			for c in f["comments"]["data"]:
+				comment.append({"name":c["from"]["name"],"message":c["message"]})
 		articles.append({"name":f["from"]["name"],"message":f["message"],"comment":comment})
 	return render_template('index.html',articles=articles)
 
