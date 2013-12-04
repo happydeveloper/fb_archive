@@ -27,7 +27,7 @@ def get_access_token():
 	feed = data["feed"]
 	for f in feed["data"]:
 		comment = []
-		if "comment" in f:
+		if "comments" in f:
 			for c in f["comments"]["data"]:
 				comment.append({"name":c["from"]["name"],"message":c["message"]})
 		articles.append({"name":f["from"]["name"],"message":f["message"],"comment":comment})
