@@ -12,11 +12,11 @@ from flask.ext.pymongo import PyMongo
 
 myapp = Flask(__name__)
 myapp.debug = True
-myapp.config["MONGO_HOST"] = 'dharma.mongohq.com'
-myapp.config["MONGO_PORT"] = 10001
+myapp.config["MONGO_HOST"] = os.environ['OPENSHIFT_MONGODB_DB_HOST']
+myapp.config["MONGO_PORT"] = os.environ['OPENSHIFT_MONGODB_DB_PORT']
 myapp.config["MONGO_DBNAME"] = 'engfordev'
-myapp.config["MONGO_USERNAME"] = "seanmoon80"
-myapp.config["MONGO_PASSWORD"] = "mdyhj_1208"
+myapp.config["MONGO_USERNAME"] = "admin"
+myapp.config["MONGO_PASSWORD"] = "8rNAeGHx_LTx"
 
 @myapp.route('/')
 def hello_world():
