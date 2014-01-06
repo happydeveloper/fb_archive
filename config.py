@@ -1,0 +1,5 @@
+DEBUG = False
+ACCESS_TOKEN = '9752b9c37276baf08838c0906fdb9aed'
+GROUPS = {
+		"engfordev":'157076174344216'
+}

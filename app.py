@@ -7,9 +7,15 @@ import urllib
 import json
 import urllib2
 from flask import Flask,render_template
+from flask.ext.pymongo import PyMongo
 
 myapp = Flask(__name__)
 myapp.debug = True
+myapp.config["MONGO_HOST"] = 'dharma.mongohq.com'
+myapp.config["MONGO_PORT"] = 10001
+myapp.config["MONGO_DBNAME"] = 'engfordev'
+myapp.config["MONGO_USERNAME"] = "seanmoon80"
+myapp.config["MONGO_PASSWORD"] = "mdyhj_1208"
 
 @myapp.route('/')
 def hello_world():
