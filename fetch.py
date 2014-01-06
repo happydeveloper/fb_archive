@@ -3,7 +3,10 @@ import urllib2
 import config
 import json
 import facebook
+from pymongo import MongoClient
 
+conn = "mongodb://" + config.MONGO_USERNAME + ":" + config.MONGO_PASSWORD + "@" + config.MONGO_HOST + ":" + config.MONGO_PORT + "/engfordev"
+client = MongoClient(conn)
 token = config.ACCESS_TOKEN
 response = urllib2.urlopen("https://graph.facebook.com/" + config.GROUPS["engfordev"] + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
 data = json.loads(response.read())
