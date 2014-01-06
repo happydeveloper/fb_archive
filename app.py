@@ -6,6 +6,7 @@ import facebook
 import urllib
 import json
 import urllib2
+import config
 from flask import Flask,render_template
 from flask.ext.pymongo import PyMongo
 
@@ -23,10 +24,13 @@ def hello_world():
 
 @myapp.route('/get_feed')
 def get_access_token():
+	''''
 	app_id = "626851570705028"
 	app_secret = "aba7af8db27670642efb196ab968ce42"
 	group_id = "157076174344216"
 	token = facebook.get_app_access_token(app_id,app_secret)
+	'''
+	token = config.ACCESS_TOKEN
 	response = urllib2.urlopen("https://graph.facebook.com/" + group_id + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
 	data = json.loads(response.read())
 	articles = []
