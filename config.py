@@ -9,3 +9,7 @@ MONGO_PORT = os.environ['OPENSHIFT_MONGODB_DB_PORT']
 MONGO_DBNAME = 'engfordev'
 MONGO_USERNAME = "admin"
 MONGO_PASSWORD = "8rNAeGHx_LTx"
+
+#MONGO_HOST = "localhost"
+#MONGO_PORT = 27017
+#MONGO_DBNAME = 'engfordev'

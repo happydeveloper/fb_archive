@@ -5,15 +5,8 @@
 </head>
 <body>
     <ul>
-        {% for a in articles %}
-        <li>
-            {{ a["name"] }}: {{ a["message"] }}
-            <ul>
-                {% for c in a["comment"] %}
-                <li>{{ c["name"] }}: {{ c["message"] }}</li>
-                {% endfor %}
-            </ul>
-        </li>
+        {% for h in tags %}
+        <li>{{h}} {{tags[h]}}</li>
         {% endfor %}
     </ul>
 </body>
