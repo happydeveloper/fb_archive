@@ -33,7 +33,7 @@ def urlencode(uri, **query):
 	parts[4] = urllib.urlencode(q)
 	return urlparse.urlunparse(parts)
 	'''
-	return urllib.quote_plus(uri.encode("utf8")
+	return urllib.quote_plus(uri.encode("utf8"))
 myapp.jinja_env.globals['urlencode'] = urlencode
 
 @myapp.route('/')
