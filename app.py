@@ -7,6 +7,7 @@ import urllib
 import json
 import urllib2
 import config
+import urlparse
 from flask import Flask,render_template,request
 from flask.ext.pymongo import PyMongo
 import config
