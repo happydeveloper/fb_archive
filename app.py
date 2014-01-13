@@ -22,7 +22,7 @@ myapp.config["MONGO_USERNAME"] = config.MONGO_USERNAME
 myapp.config["MONGO_PASSWORD"] = config.MONGO_PASSWORD
 mongo = PyMongo(myapp)
 
-@app.template_filter('urlencode')
+@myapp.template_filter('urlencode')
 def urlencode(uri, **query):
 	parts = list(urlparse.urlparse(uri))
 	q = urlparse.parse_qs(parts[4])
