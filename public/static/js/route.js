@@ -1,5 +1,8 @@
 function route($provider){
-    $provider.when('/:tag',{
+    $provider.when('/',{
+        controller:'IndexCtrl'
+    })
+    .when('/:tag',{
         templateUrl: 'partials/tag.html',
         controller:'TagCtrl'
     }).otherwise({
