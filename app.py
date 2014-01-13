@@ -12,7 +12,6 @@ from flask.ext.pymongo import PyMongo
 import config
 
 myapp = Flask(__name__,static_folder='public/static')
-myapp.debug = True
 myapp.config["MONGO_HOST"] = config.MONGO_HOST
 myapp.config["MONGO_PORT"] = config.MONGO_PORT
 myapp.config["MONGO_DBNAME"] = config.MONGO_DBNAME
