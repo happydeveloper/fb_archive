@@ -25,11 +25,14 @@ mongo = PyMongo(myapp)
 
 @myapp.template_filter('urlencode')
 def urlencode(uri, **query):
+	'''
 	parts = list(urlparse.urlparse(uri))
 	q = urlparse.parse_qs(parts[4])
 	q.update(query)
 	parts[4] = urllib.urlencode(q)
 	return urlparse.urlunparse(parts)
+	'''
+	return urllib2.quote_plus(uri.encode("utf8"))
 myapp.jinja_env.globals['urlencode'] = urlencode
 
 @myapp.route('/')
