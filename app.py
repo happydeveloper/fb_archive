@@ -52,7 +52,6 @@ def index():
 
 @myapp.route('/tag/<string:tag_name>',methods=["GET"])
 def tag(tag_name):
-	print tag_name
 	col = mongo.db.feed
 	hashtags = col.find({"hashtags":{"$exists":True}},{"hashtags":1})
 	post = col.find({'hashtags':tag_name})
