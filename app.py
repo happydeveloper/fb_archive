@@ -49,7 +49,6 @@ def tag(tag_name):
 				tags.update({t:1})
 	return render_template("index.html",tags=tags,post=post)
 
-#import views
 PYCART_DIR = ''.join(['python-', '.'.join(map(str, sys.version_info[:2]))])
 
 try:
@@ -83,11 +82,10 @@ if __name__ == '__main__':
 	ip   = os.environ['OPENSHIFT_PYTHON_IP']
 	port = 8080
 	zapp = imp.load_source('application', 'wsgi/application')
-	
 	#  Use gevent if we have it, otherwise run a simple httpd server.
 	print 'Starting WSGIServer on %s:%d ... ' % (ip, port)
 	try:
-	   run_gevent_server(myapp, ip, port)
+		run_gevent_server(myapp, ip, port)
 	except:
-	   print 'gevent probably not installed - using default simple server ...'
-	   run_simple_httpd_server(zapp.application, ip, port)
+		print 'gevent probably not installed - using default simple server ...'
+		run_simple_httpd_server(zapp.application, ip, port)
