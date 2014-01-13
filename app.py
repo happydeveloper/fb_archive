@@ -16,9 +16,9 @@ myapp.debug = True
 myapp.config["MONGO_HOST"] = config.MONGO_HOST
 myapp.config["MONGO_PORT"] = config.MONGO_PORT
 myapp.config["MONGO_DBNAME"] = config.MONGO_DBNAME
-mongo = PyMongo(myapp)
 myapp.config["MONGO_USERNAME"] = "admin"
 myapp.config["MONGO_PASSWORD"] = "8rNAeGHx_LTx"
+mongo = PyMongo(myapp)
 
 @myapp.route('/')
 def index():
@@ -32,7 +32,7 @@ def index():
 			else:
 				tags.update({t:1})
 	return render_template("index.html",tags=tags)
-
+#import views
 PYCART_DIR = ''.join(['python-', '.'.join(map(str, sys.version_info[:2]))])
 
 try:
@@ -52,7 +52,6 @@ def run_simple_httpd_server(app, ip, port=8080):
    from wsgiref.simple_server import make_server
    make_server(ip, port, app).serve_forever()
 
-
 #
 # IMPORTANT: Put any additional includes below this line.  If placed above this
 # line, it's possible required libraries won't be in your searchable path
@@ -64,14 +63,14 @@ def run_simple_httpd_server(app, ip, port=8080):
 #
 if __name__ == '__main__':
 	#myapp.run()
-   ip   = os.environ['OPENSHIFT_PYTHON_IP']
-   port = 8080
-   zapp = imp.load_source('application', 'wsgi/application')
-
-   #  Use gevent if we have it, otherwise run a simple httpd server.
-   print 'Starting WSGIServer on %s:%d ... ' % (ip, port)
-   try:
-      run_gevent_server(myapp, ip, port)
-   except:
-      print 'gevent probably not installed - using default simple server ...'
-      run_simple_httpd_server(zapp.application, ip, port)
+	ip   = os.environ['OPENSHIFT_PYTHON_IP']
+	port = 8080
+	zapp = imp.load_source('application', 'wsgi/application')
+	
+	#  Use gevent if we have it, otherwise run a simple httpd server.
+	print 'Starting WSGIServer on %s:%d ... ' % (ip, port)
+	try:
+	   run_gevent_server(myapp, ip, port)
+	except:
+	   print 'gevent probably not installed - using default simple server ...'
+	   run_simple_httpd_server(zapp.application, ip, port)

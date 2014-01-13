@@ -8,10 +8,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
 </head>
 <body>
-    <ul>
-        {% for h in tags %}
-        <li>{{h}} {{tags[h]}}</li>
-        {% endfor %}
-    </ul>
+    <div class="row">
+        <div class="well">
+            <legend>Tags</legend>
+            <ul class="nav nav-pills">
+                {% for h in tags %}
+                <li><a href="/tag/{{h}}">{{h}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

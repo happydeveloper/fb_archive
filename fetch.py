@@ -7,9 +7,9 @@ import time
 import re
 
 from pymongo import MongoClient
-#conn = "mongodb://localhost:27017/engfordev"
+conn = "mongodb://localhost:27017/engfordev"
 #client = MongoClient(conn)
-conn = "mongodb://" + config.MONGO_USERNAME + ":" + config.MONGO_PASSWORD + "@" + config.MONGO_HOST + ":" + config.MONGO_PORT + "/engfordev"
+#conn = "mongodb://" + config.MONGO_USERNAME + ":" + config.MONGO_PASSWORD + "@" + config.MONGO_HOST + ":" + config.MONGO_PORT + "/engfordev"
 client = MongoClient(conn)
 token = config.ACCESS_TOKEN
 #print "https://graph.facebook.com/" + config.GROUPS["engfordev"] + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token)
@@ -46,12 +46,15 @@ while prev:
 print "Total Request: [" + str(total_request) + "]"
 
 feed = col.find()
-hash_reg = re.compile("[#]\S+",re.UNICODE)
+hash_reg = re.compile("\s[#]\S+",re.UNICODE)
 for f in feed:
 	if "message" in f:
-		tag = hash_reg.findall(f["message"])
-		if len(tag) > 0:
-			col.update({"_id":f["_id"]},{'$set':{"hashtags":tag}},upsert=True)
+		filtered_tags = hash_reg.findall(f["message"])
+		if len(filtered_tags) > 0:
+			tags = []
+			for t in filtered_tags:
+				tags.append(t.strip())
+			col.update({"_id":f["_id"]},{'$set':{"hashtags":tags}},upsert=True)
 '''
 feed = data["feed"]
 for f in feed["data"]:
