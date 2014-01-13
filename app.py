@@ -26,6 +26,7 @@ mongo = PyMongo(myapp)
 @myapp.template_filter('urlencode')
 def urlencode(uri, **query):
 	parts = list(urlparse.urlparse(uri))
+	print parts
 	q = urlparse.parse_qs(parts[4])
 	q.update(query)
 	parts[4] = urllib.urlencode(q)
