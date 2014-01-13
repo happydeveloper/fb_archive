@@ -10,6 +10,9 @@ import config
 from flask import Flask,render_template,request
 from flask.ext.pymongo import PyMongo
 import config
+import sys, logging
+
+logging.basicConfig(stream=sys.stderr)
 
 myapp = Flask(__name__,static_folder='public/static')
 myapp.config["MONGO_HOST"] = config.MONGO_HOST
