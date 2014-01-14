@@ -15,24 +15,28 @@
 </head>
 <body>
     <div class="row">
-        <div class="well">
-            <legend>Tags</legend>
-            <ul class="nav nav-pills">
-                {% for h in tags %}
-                <li><a href="/tag/{{h|urlencode}}">{{h}}</a></li>
-                {% endfor %}
-            </ul>
+        <div class="col-xs-6 col-md-2">
+            <div class="well">
+                <legend>Tags</legend>
+                <ul class="nav nav-stacked">
+                    {% for h in tags %}
+                    <li class="tag"><a href="/tag/{{h|urlencode}}">{{h}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        <ul class='post'>
-            {% for p in post %}
-            <li><img src="https://graph.facebook.com/{{ p["from"]["id"]}}/picture?type=small" class="profile-picture"></img>{{ p["from"]["name"] }} {{ p["message"] }}<div class="clr"></div></li>
-            {% if "comments" in p %}
-                {% for c in p["comments"]["data"] %}
-                <li class="comment"><img src="https://graph.facebook.com/{{ c["from"]["id"]}}/picture?type=small" class="profile-picture"></img>{{ c["from"]["name"] }} {{ c["message"] }}<div class="clr"></div></li>
+        <div class="col-xs-9">
+            <ul class='post'>
+                {% for p in post %}
+                <li><img src="https://graph.facebook.com/{{ p['from']['id']}}/picture?type=small" class="profile-picture" title="{{ p['from']['name'] }}"></img><a href="https://facebook.com/{{ p['from']['id']}}">{{ p["from"]["name"] }}</a> {{ p["message"]|nl2br }}<div class="clr"></div></li>
+                {% if "comments" in p %}
+                    {% for c in p["comments"]["data"] %}
+                    <li class="comment"><img src="https://graph.facebook.com/{{ c['from']['id']}}/picture?type=small" class="profile-picture" title="{{ c['from']['name'] }}"></img><a href="https://facebook.com/{{ c['from']['id']}}">{{ c["from"]["name"] }}</a> {{ c["message"]|nl2br }}<div class="clr"></div></li>
+                    {% endfor %}
+                {% endif %}
                 {% endfor %}
-            {% endif %}
-            {% endfor %}
-        <ul>
+            <ul>
+        </div>
     </div>
 </body>
 </html>

@@ -1,10 +1,11 @@
 import facebook
-import urllib
-import urllib2
 import json
 import urlparse
+from collections import OrderedDict
+from operator import itemgetter
 from flask import render_template,request
-from app import engfordev,mongo 
+from app import engfordev,mongo
+import filters
 
 @engfordev.route('/')
 def index():
@@ -18,6 +19,7 @@ def index():
 				tags[t] += 1
 			else:
 				tags.update({t:1})
+	tags = OrderedDict(sorted(tags.items(), key=itemgetter(1),reverse=True))
 	return render_template("index.html",tags=tags,post=post)
 
 @engfordev.route('/tag/<string:tag_name>',methods=["GET"])
@@ -32,4 +34,5 @@ def tag(tag_name):
 				tags[t] += 1
 			else:
 				tags.update({t:1})
+	tags = OrderedDict(sorted(tags.items(), key=itemgetter(1),reverse=True))
 	return render_template("index.html",tags=tags,post=post)
