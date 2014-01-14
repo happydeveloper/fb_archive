@@ -2,3 +2,4 @@ ul.post {list-style:none;}
 ul.post li {background-color:#EDEFF4;padding:4px;margin-top:1px;}
 ul.post li.comment{margin-left:30px;}
 ul.post li img.profile-picture {float:left;margin-right:5px;}
+.clr{clear:both;}
