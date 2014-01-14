@@ -4,10 +4,10 @@ import urlparse
 from collections import OrderedDict
 from operator import itemgetter
 from flask import render_template,request
-from app import engfordev,mongo
+from app import myapp,mongo
 import filters
 
-@engfordev.route('/')
+@myapp.route('/')
 def index():
 	col = mongo.db.feed
 	hashtags = col.find({"hashtags":{"$exists":True}},{"hashtags":1})
@@ -22,7 +22,7 @@ def index():
 	tags = OrderedDict(sorted(tags.items(), key=itemgetter(1),reverse=True))
 	return render_template("index.html",tags=tags,post=post)
 
-@engfordev.route('/tag/<string:tag_name>',methods=["GET"])
+@myapp.route('/tag/<string:tag_name>',methods=["GET"])
 def tag(tag_name):
 	col = mongo.db.feed
 	hashtags = col.find({"hashtags":{"$exists":True}},{"hashtags":1})
