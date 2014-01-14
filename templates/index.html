@@ -25,10 +25,10 @@
         </div>
         <ul class='post'>
             {% for p in post %}
-            <li><img src="http://graph.focebook.com/{{ p["from"]["id"]}}/picture?type=small"></img>{{ p["from"]["name"] }} {{ p["message"] }}</li>
+            <li><img src="https://graph.facebook.com/{{ p["from"]["id"]}}/picture?type=small"></img>{{ p["from"]["name"] }} {{ p["message"] }}</li>
             {% if "comments" in p %}
                 {% for c in p["comments"]["data"] %}
-                <li class="comment"><img src="http://graph.focebook.com/{{ c["from"]["id"]}}/picture?type=small"></img>{{ c["from"]["name"] }} {{ c["message"] }}</li>
+                <li class="comment"><img src="https://graph.facebook.com/{{ c["from"]["id"]}}/picture?type=small"></img>{{ c["from"]["name"] }} {{ c["message"] }}</li>
                 {% endfor %}
             {% endif %}
             {% endfor %}
