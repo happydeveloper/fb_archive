@@ -9,13 +9,15 @@ from pymongo import MongoClient
 conn = "mongodb://" + config.MONGO_USERNAME + ":" + config.MONGO_PASSWORD + "@" + config.MONGO_HOST + ":" + config.MONGO_PORT + "/" + config.MONGO_DBNAME
 client = MongoClient(conn)
 token = config.ACCESS_TOKEN
-response = urllib2.urlopen("https://graph.facebook.com/" + config.GROUPS["engfordev"] + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
+
+# #GROUPDICTKEY NEED TO BE REPLACE WITH KEY THAT YOU SET IN CONFIG
+response = urllib2.urlopen("https://graph.facebook.com/" + config.GROUPS["#GROUPDICTKEY"] + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
 data = json.loads(response.read())
 
 if "error" in data:
 	if data["error"]["code"] == 613:
 		time.sleep(600)
-		response = urllib2.urlopen("https://graph.facebook.com/" + config.GROUPS["engfordev"] + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
+		response = urllib2.urlopen("https://graph.facebook.com/" + config.GROUPS["#GROUPDICTKEY"] + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
 		data = json.loads(response.read())
 
 prev = data["feed"]["paging"]["next"]
