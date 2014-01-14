@@ -28,10 +28,10 @@
         <div class="col-xs-9">
             <ul class='post'>
                 {% for p in post %}
-                <li><img src="https://graph.facebook.com/{{ p['from']['id']}}/picture?type=small" class="profile-picture" title="{{ p['from']['name'] }}"></img><a href="https://facebook.com/{{ p['from']['id']}}">{{ p["from"]["name"] }}</a> {{ p["message"]|nl2br }}<div class="clr"></div></li>
+                <li><img src="https://graph.facebook.com/{{ p['from']['id']}}/picture?type=small" class="profile-picture" title="{{ p['from']['name'] }}"></img><a href="https://facebook.com/{{ p['from']['id']}}">{{ p["from"]["name"] }}</a> {{ p["message"]|htmlentitydecode|urlize|nl2br}}<div class="clr"></div></li>
                 {% if "comments" in p %}
                     {% for c in p["comments"]["data"] %}
-                    <li class="comment"><img src="https://graph.facebook.com/{{ c['from']['id']}}/picture?type=small" class="profile-picture" title="{{ c['from']['name'] }}"></img><a href="https://facebook.com/{{ c['from']['id']}}">{{ c["from"]["name"] }}</a> {{ c["message"]|nl2br }}<div class="clr"></div></li>
+                    <li class="comment"><img src="https://graph.facebook.com/{{ c['from']['id']}}/picture?type=small" class="profile-picture" title="{{ c['from']['name'] }}"></img><a href="https://facebook.com/{{ c['from']['id']}}">{{ c["from"]["name"] }}</a> {{ c["message"]|htmlentitydecode|urlize|nl2br }}<div class="clr"></div></li>
                     {% endfor %}
                 {% endif %}
                 {% endfor %}
