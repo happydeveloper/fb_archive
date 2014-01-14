@@ -5,13 +5,10 @@ import json
 import facebook
 import time
 import re
-
 from pymongo import MongoClient
-#conn = "mongodb://localhost:27017/engfordev"
-conn = "mongodb://" + config.MONGO_USERNAME + ":" + config.MONGO_PASSWORD + "@" + config.MONGO_HOST + ":" + config.MONGO_PORT + "/engfordev"
+conn = "mongodb://" + config.MONGO_USERNAME + ":" + config.MONGO_PASSWORD + "@" + config.MONGO_HOST + ":" + config.MONGO_PORT + "/" + config.MONGO_DBNAME
 client = MongoClient(conn)
 token = config.ACCESS_TOKEN
-#print "https://graph.facebook.com/" + config.GROUPS["engfordev"] + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token)
 response = urllib2.urlopen("https://graph.facebook.com/" + config.GROUPS["engfordev"] + "?fields=feed&method=GET&format=json&suppress_http_code=1&access_token=" + str(token))
 data = json.loads(response.read())
 
@@ -23,7 +20,7 @@ if "error" in data:
 
 prev = data["feed"]["paging"]["next"]
 feed = data["feed"]
-col = client.engfordev.feed
+col = #MONGO DB COLLECTION
 col.drop()
 col.insert(feed["data"])
 total_request = 1
