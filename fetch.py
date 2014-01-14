@@ -61,14 +61,3 @@ for f in feed:
 					tags.append(t.strip())
 	if len(tags) > 0:
 		col.update({"_id":f["_id"]},{'$set':{"hashtags":tags}},upsert=True)
-'''
-feed = data["feed"]
-for f in feed["data"]:
-	comment = []
-	if "comments" in f:
-		for c in f["comments"]["data"]:
-			comment.append({"name":c["from"]["name"],"message":c["message"]})
-	articles.append({"name":f["from"]["name"],"message":f["message"],"comment":comment})
-
-print articles
-'''
